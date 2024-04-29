@@ -31,7 +31,7 @@ function Form({ transactions, setTransactions }) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <div className="row border m-4 p-4">
+                <div className="row border m-4 p-4 mx-auto">
                     <div className="col-3 mx-auto">
                         <input
                             className="form-control col-2"

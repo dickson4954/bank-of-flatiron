@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Header from './componets/Header';
 import Search from './componets/Search';
 import Table from './componets/Table';
 import './App.css';
@@ -55,6 +56,7 @@ const [transactions,setTransactions] = useState(arr)
 
   return (
     <div className='container'>
+      <Header/>
       <Search transactions={transactions} setTransactions={setTransactions} arr={arr}/>
       <Form transactions={transactions} setTransactions={setTransactions}/>  
       <Table transactions={transactions} setTransactions={setTransactions}/>
