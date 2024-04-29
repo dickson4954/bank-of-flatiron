@@ -4,6 +4,7 @@ import Table from './componets/Table';
 import './App.css';
 import Form from './componets/Form';
 
+
 function App() {
   const arr =[
     {
@@ -57,6 +58,7 @@ const [transactions,setTransactions] = useState(arr)
       <Search transactions={transactions} setTransactions={setTransactions} arr={arr}/>
       <Form transactions={transactions} setTransactions={setTransactions}/>  
       <Table transactions={transactions} setTransactions={setTransactions}/>
+      
   </div>
   );
 

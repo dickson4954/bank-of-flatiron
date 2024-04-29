@@ -1,58 +1,90 @@
-import { useState } from "react"
+import React, { useState } from "react";
 
-export default function Form({transactions,setTransactions}){
-   const today = new Date();
-   const [formData, setFormData] = useState({
-        date:"",
-        description:"",
-        category:"",
-        amount:""
-})
+function Form({ transactions, setTransactions }) {
+    const [formEntry, setFormEntry] = useState({
+        date: "",
+        description: "",
+        category: "",
+        amount: ""
+    });
 
-
-    function handleSubmit(event){
-        event.preventdefault()
-         setTransactions([transactions, formData])
+    function handleSubmit(event) {
+        event.preventDefault();
+        setTransactions([...transactions, formEntry]);
+        
+        setFormEntry({
+            date: "",
+            description: "",
+            category: "",
+            amount: ""
+        });
     }
-  function handleChange(event){
-    
-    setFormData(
-        {
-            ...formData,
-            [event.target.name] : event.target.value
-        }
-    )
-    console.log(formData)
 
-  }
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setFormEntry(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
 
-  return(
-    <>
-    <form onSubmit={handleSubmit}>
-        <div className="row border p-4 m-4">
-        <div className="col-3 mx-auto">
-        <input className="form-control" onChange={handleChange} name="date" value={formData.date} type="date" placeholder="date"/>
-        </div>
-    <div className="col-3 mx-auto">
-    <input className="form-control form-control-sm col-3" onChange={handleChange} name="description" value={formData.description} placeholder="Enter description" type="text"/>
-    </div>
-    <div className="col-3 mx-auto">
-    <input className="form-control form-control-sm col-3" onChange={handleChange} name="category" value={formData.category} placeholder="Enter category" type="text"/>
-    </div>
-
-   <div className="col-3 mx-auto">
-   <input className="form-control form-control-sm col=3" onChange={handleChange} name="amount" value={formData.amount} placeholder="Enter amount" type="number"/>
-   </div>
-   
-    <div className="col-4 mx-auto">
-        <button type="submit" className=" mx-auto btn btn-danger">Add Transaction</button>
-
-    </div>
-   </div>
-   
-    
-        </form>
-    </>
-  )
-
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <div className="row border m-4 p-4">
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="date"
+                            type="date"
+                            value={formEntry.date}
+                            placeholder="Date"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="description"
+                            type="text"
+                            value={formEntry.description}
+                            placeholder="Description"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="category"
+                            type="text"
+                            value={formEntry.category}
+                            placeholder="Category"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="amount"
+                            type="number"
+                            value={formEntry.amount}
+                            placeholder="Amount"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto m-2 p-2">
+                        <button type="submit" className="mx-auto btn btn-warning">
+                            Add Transaction
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </>
+    );
 }
+
+export default Form;
