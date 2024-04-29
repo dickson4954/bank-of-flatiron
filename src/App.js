@@ -55,8 +55,8 @@ const [transactions,setTransactions] = useState(arr)
   return (
     <div className='container'>
       <Search transactions={transactions} setTransactions={setTransactions} arr={arr}/>
-        <Form transactions={transactions} setTransactions={setTransactions}/>  
-  <Table transactions={transactions} setTransactions={setTransactions}/>
+      <Form transactions={transactions} setTransactions={setTransactions}/>  
+      <Table transactions={transactions} setTransactions={setTransactions}/>
   </div>
   );
 
