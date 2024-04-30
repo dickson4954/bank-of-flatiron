@@ -1,31 +1,28 @@
 import React, { useState } from "react";
 
-function Form({ transactions, setTransactions }) {
+function Form({ addTransaction }) {
     const [formEntry, setFormEntry] = useState({
-        date: "",
-        description: "",
-        category: "",
-        amount: ""
+        Date: "",
+        Description: "",
+        Category: "",
+        Amount: ""
     });
 
     function handleSubmit(event) {
         event.preventDefault();
-        setTransactions([...transactions, formEntry]);
-        
+        addTransaction(formEntry)
         setFormEntry({
-            date: "",
-            description: "",
-            category: "",
-            amount: ""
+            Date: "",
+            Description: "",
+            Category: "",
+            Amount: ""
         });
     }
 
     function handleChange(event) {
         const { name, value } = event.target;
-        setFormEntry(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+        setFormEntry(prevState => ({...prevState,[name]: value}));
+        
     }
 
     return (
@@ -36,9 +33,9 @@ function Form({ transactions, setTransactions }) {
                         <input
                             className="form-control col-2"
                             onChange={handleChange}
-                            name="date"
+                            name="Date"
                             type="date"
-                            value={formEntry.date}
+                            value={formEntry.Date}
                             placeholder="Date"
                             aria-label=".form-control-sm example"
                         />
@@ -47,9 +44,9 @@ function Form({ transactions, setTransactions }) {
                         <input
                             className="form-control col-2"
                             onChange={handleChange}
-                            name="description"
+                            name="Description"
                             type="text"
-                            value={formEntry.description}
+                            value={formEntry.Description}
                             placeholder="Description"
                             aria-label=".form-control-sm example"
                         />
@@ -58,9 +55,9 @@ function Form({ transactions, setTransactions }) {
                         <input
                             className="form-control col-2"
                             onChange={handleChange}
-                            name="category"
+                            name="Category"
                             type="text"
-                            value={formEntry.category}
+                            value={formEntry.Category}
                             placeholder="Category"
                             aria-label=".form-control-sm example"
                         />
@@ -69,9 +66,9 @@ function Form({ transactions, setTransactions }) {
                         <input
                             className="form-control col-2"
                             onChange={handleChange}
-                            name="amount"
+                            name="Amount"
                             type="number"
-                            value={formEntry.amount}
+                            value={formEntry.Amount}
                             placeholder="Amount"
                             aria-label=".form-control-sm example"
                         />

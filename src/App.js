@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Header from './componets/Header';
-import Search from './componets/Search';
 import Table from './componets/Table';
 import './App.css';
 import Form from './componets/Form';
@@ -46,20 +45,33 @@ Description: "Deposit",
 Category: "income",
 Amount: "6500"
 
-},
+}
 
 ]
 
 const [transactions,setTransactions] = useState(arr)
+const [search,setSearch]=useState("")
 
+function addTransaction(formData){
+  setTransactions(prevState=>([...prevState,formData]))
+}
 
-
+function handleChange(searchTerm){
+  setSearch(searchTerm)
+}
+const filter=transactions.filter((transaction)=> {
+  if (search.length>0){
+  return transaction.Description.toLowerCase().includes(search.toLowerCase())
+  
+ }else{
+  return true
+ }})
   return (
     <div className='container'>
       <Header/>
-      <Search transactions={transactions} setTransactions={setTransactions} arr={arr}/>
-      <Form transactions={transactions} setTransactions={setTransactions}/>  
-      <Table transactions={transactions} setTransactions={setTransactions}/>
+      {/* <Search transactions={transactions} setTransactions={setTransactions} arr={arr}/> */}
+      <Form transactions={filter} addTransaction={addTransaction}/>  
+      <Table transactions={filter} setTransactions={setTransactions} search={search} handleChange={handleChange}/>
       
   </div>
   );
